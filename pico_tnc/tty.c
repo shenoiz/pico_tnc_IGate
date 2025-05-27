@@ -48,7 +48,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //uint8_t usb_echo = 1; // on
 
 // tty info
-tty_t tty[TTY_N];
+extern tty_t tty[TTY_N];
 
 //static uint8_t cmd_buf[CMD_LEN + 1];
 //static int cmd_idx = 0;
