@@ -32,6 +32,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "tnc.h"
 #include "unproto.h"
 #include "tty.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include "pico/stdlib.h"
+
+//#include "timer.h"
+#include "tnc.h"
+#include "bell202.h"
+#include "ax25.h"
+#include "usb_output.h"
+#include "tty.h"
+#include "digipeat.h"
+#include "kiss.h"
 
 static uint32_t beacon_time = 0;
 
@@ -52,7 +65,7 @@ void beacon(void)
     int offset = snprintf(combined, sizeof(combined), "%s>", param.mycall);
 
     // Add comma-separated unproto paths
-    for (int i = 0; i < 4 && param.unproto[i][0] != '\0'; i++) {
+    for (int i = 0; i < 4 && param.unproto[i] != '\0'; i++) {
         if (i > 0) {
             offset += snprintf(combined + offset, sizeof(combined) - offset, ",");
         }
