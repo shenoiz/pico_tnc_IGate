@@ -31,6 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "tnc.h"
 #include "unproto.h"
+#include "tty.h"
 
 static uint32_t beacon_time = 0;
 
@@ -46,5 +47,21 @@ void beacon(void)
     if (tnc_time() - beacon_time < param.beacon * 60 * 100) return; // convert minutes to 10 ms
 
     send_unproto(&tnc[BEACON_PORT], param.btext, strlen(param.btext));
+  //--------------------
+    char combined[256];
+    int offset = snprintf(combined, sizeof(combined), "%s>", param.mycall);
+
+    // Add comma-separated unproto paths
+    for (int i = 0; i < 4 && param.unproto[i][0] != '\0'; i++) {
+        if (i > 0) {
+            offset += snprintf(combined + offset, sizeof(combined) - offset, ",");
+        }
+        offset += snprintf(combined + offset, sizeof(combined) - offset, "%s", param.unproto[i]);
+    }
+
+    // Add colon and btext
+    snprintf(combined + offset, sizeof(combined) - offset, ":%s", param.btext);
+//--------------------
+    tty_write_str(ttyp, combined);
     beacon_time = tnc_time();
 }
