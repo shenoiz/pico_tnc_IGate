@@ -66,7 +66,7 @@ static char const help_str[] =
     "MYALIAS (myalias RELAY)\r\n"
     "PERM (PERM)\r\n"
     "ECHO (echo on or echo off)\r\n"
-    "GPS (gps $GPGAA or gps $GPGLL or gps $GPRMC)\r\n"
+    "GPS (gps $GPGGA or gps $GPGLL or gps $GPRMC)\r\n"
     "TRace (tr xmit or tr rcv) - For debugging only\r\n"
     "TXDELAY (txdelay n 0<n<201 n is number of delay flags to send)\r\n"
     "CALIBRATE (Calibrate Mode - Testing Only)\r\n"
