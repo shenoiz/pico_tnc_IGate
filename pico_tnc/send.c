@@ -41,7 +41,7 @@ static const int ptt_pins[] = {
     7,  // port 2
 };
 
-#define LED_PIN PICO_DEFAULT_LED_PIN
+//#define LED_PIN PICO_DEFAULT_LED_PIN
 
 #define ISR_PIN 15
 
